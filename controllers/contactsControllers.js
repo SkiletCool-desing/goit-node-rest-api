@@ -1,5 +1,5 @@
-import contactsService from "../services/contactsServices.js";
-import { validateContact, validateUpdate } from "../schemas/contactsSchemas.js";
+// import contactsService from "../services/contactsServices.js";
+// import { validateContact, validateUpdate } from "../schemas/contactsSchemas.js";
 
 export const getAllContacts = async (req, res) => {
   try {
