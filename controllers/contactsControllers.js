@@ -1,4 +1,4 @@
-import { contactsServices } from "../services/contactsServices";
+import {contactsController, listContacts, getContactById, removeContact, addContact} from "../services/contactsServices"
 // import { validateContact, validateUpdate } from "../schemas/contactsSchemas.js";
 
 export const getAllContacts = async (req, res) => {
