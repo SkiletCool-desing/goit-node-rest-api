@@ -1,8 +1,13 @@
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { v4 as uuid } from "uuid";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const contactsPath = path.join(__dirname, "db", "contacts.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const contactsPath = path.join(__dirname, "../db", "contacts.json");
 
 export async function listContacts() {
   const list = await readFile(contactsPath);
