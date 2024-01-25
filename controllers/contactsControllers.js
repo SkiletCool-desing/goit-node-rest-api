@@ -1,9 +1,9 @@
-import {listContacts, getContactById, removeContact, addContact} from "../services/contactsServices"
+import {listContacts, getContactById, removeContact, addContact } from "../services/contactsServices.js"
 // import { validateContact, validateUpdate } from "../schemas/contactsSchemas.js";
 
 export const getAllContacts = async (req, res) => {
   try {
-    const contacts = await contactsServices.listContacts();
+    const contacts = await listContacts();
     res.status(200).json(contacts);
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error' });
@@ -13,7 +13,7 @@ export const getAllContacts = async (req, res) => {
 export const getOneContact = async (req, res) => {
   try {
     const contactId = req.params.id;
-    const contact = await contactsServices.getContactById(contactId);
+    const contact = await getContactById(contactId);
 
     if (contact) {
       res.status(200).json(contact);
@@ -28,7 +28,7 @@ export const getOneContact = async (req, res) => {
 export const deleteContact = async (req, res) => {
   try {
     const contactId = req.params.id;
-    const deletedContact = await contactsServices.removeContact(contactId);
+    const deletedContact = await removeContact(contactId);
 
     if (deletedContact) {
       res.status(200).json(deletedContact);
@@ -42,13 +42,13 @@ export const deleteContact = async (req, res) => {
 
 export const createContact = async (req, res) => {
   try {
-    const { error } = validateContact(req.body);
+    // const { error } = validateContact(req.body);
 
-    if (error) {
-      return res.status(400).json({ message: error.message });
-    }
+    // if (error) {
+    //   return res.status(400).json({ message: error.message });
+    // }
 
-    const newContact = await contactsServices.addContact(req.body);
+    const newContact = await addContact(req.body);
     res.status(201).json(newContact);
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error' });
@@ -63,13 +63,13 @@ export const updateContact = async (req, res) => {
       return res.status(400).json({ message: 'Body must have at least one field' });
     }
 
-    const { error } = validateUpdate(req.body);
+    // const { error } = validateUpdate(req.body);
 
-    if (error) {
-      return res.status(400).json({ message: error.message });
-    }
+    // if (error) {
+    //   return res.status(400).json({ message: error.message });
+    // }
 
-    const updatedContact = await contactsServices.updateContact(contactId, req.body);
+    const updatedContact = await updateContact(contactId, req.body);
 
     if (updatedContact) {
       res.status(200).json(updatedContact);
