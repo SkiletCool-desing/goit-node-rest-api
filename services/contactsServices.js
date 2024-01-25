@@ -39,4 +39,4 @@ async function addContact(name, email, phone) {
   return newContact;
 }
 
-export { contactsController, listContacts, getContactById, removeContact, addContact };
+export {listContacts, getContactById, removeContact, addContact };
