@@ -1,5 +1,4 @@
 import {listContacts, getContactById, removeContact, addContact } from "../services/contactsServices.js"
-// import { validateContact, validateUpdate } from "../schemas/contactsSchemas.js";
 
 export const getAllContacts = async (req, res) => {
   try {
@@ -42,11 +41,6 @@ export const deleteContact = async (req, res) => {
 
 export const createContact = async (req, res) => {
   try {
-    // const { error } = validateContact(req.body);
-
-    // if (error) {
-    //   return res.status(400).json({ message: error.message });
-    // }
 
     const newContact = await addContact(req.body);
     res.status(201).json(newContact);
@@ -62,12 +56,6 @@ export const updateContact = async (req, res) => {
     if (Object.keys(req.body).length === 0) {
       return res.status(400).json({ message: 'Body must have at least one field' });
     }
-
-    // const { error } = validateUpdate(req.body);
-
-    // if (error) {
-    //   return res.status(400).json({ message: error.message });
-    // }
 
     const updatedContact = await updateContact(contactId, req.body);
 

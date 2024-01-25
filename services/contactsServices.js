@@ -43,5 +43,3 @@ export async function addContact(name, email, phone) {
   await writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return newContact;
 }
-
-// export {listContacts, getContactById, removeContact, addContact };
