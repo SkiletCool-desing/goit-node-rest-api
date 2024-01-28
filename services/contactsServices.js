@@ -34,13 +34,11 @@ export async function removeContact(contactId) {
 export async function addContact(name, email, phone) {
   const contacts = await listContacts();
   const newContact = {
-    "id": "",
-    "name": {
-        "name": "",
-        "phone": "",
-        "email": ""
-    }
-};
+    id: uuid(),
+    name,
+    email,
+    phone,
+  };
   contacts.push(newContact);
   await writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return newContact;
