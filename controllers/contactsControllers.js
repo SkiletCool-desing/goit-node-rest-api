@@ -49,9 +49,11 @@ export const createContact = async (req, res) => {
     }
     const newContact = await addContact(req.body);
     res.status(201).json(newContact);
-  } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
   }
+    catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+}
 };
 
 export const updateContact = async (req, res) => {
