@@ -31,7 +31,8 @@ export async function removeContact(contactId) {
   return result;
 }
 
-export async function addContact(name, email, phone) {
+export async function addContact({ name, email, phone }) {
+  console.log (name,email, phone)
   const contacts = await listContacts();
   const newContact = {
     id: uuid(),
