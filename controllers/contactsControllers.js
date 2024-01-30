@@ -63,7 +63,7 @@ export const updateContact = async (req, res) => {
     if (Object.keys(req.body).length === 0) {
       return res.status(400).json({ message: 'Body must have at least one field' });
     }
-    const { error } = updateContactSchema(req.body);
+    const { error } = updateContactSchema.validate(req.body);
 
     if (error) {
       return res.status(400).json({ message: error.message });
