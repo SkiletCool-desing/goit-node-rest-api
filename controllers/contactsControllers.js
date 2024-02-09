@@ -97,3 +97,35 @@ export const updateContact = async (req, res) => {
 
 //   res.json(updatedContact);
 // }
+
+
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch(next);
+  };
+};
+
+export const updateContactById = catchAsync(async (req, res) => {
+  const keys = Object.keys(req.body);
+  if (keys.length === 0) {
+    throw HttpError(400, "Body must have at least one field");
+  }
+
+  const result = await updateContact(req.params.id, req.body, {
+    new: true,
+  });
+  if (!result) {
+    throw HttpError(404);
+  }
+  return res.status(200).json(result);
+});
+
+export const updateFavorite = catchAsync(async (req, res) => {
+  const result = await updateStatusContact(req.params.id, req.body, {
+    new: true,
+  });
+  if (!result) {
+    throw HttpError(404);
+  }
+  res.status(200).json(result);
+});
